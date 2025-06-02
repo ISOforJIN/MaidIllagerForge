@@ -17,9 +17,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @OnlyIn(Dist.CLIENT)
 @Mixin(PillagerRenderer.class)
 public class MixinPillagerRenderer {
-    private static final ResourceLocation PILLAGER = new ResourceLocation(MaidIllager.MODID + ":textures/entity/maid_pillager.png");
+    private static final ResourceLocation PILLAGER = ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/maid_pillager.png");
 
-    @Inject(method = "getTextureLocation", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/monster/Pillager;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
     public void onGetTextureLocation(Pillager entity, CallbackInfoReturnable<ResourceLocation> cir){
         cir.setReturnValue((ResourceLocation) PILLAGER);
     }

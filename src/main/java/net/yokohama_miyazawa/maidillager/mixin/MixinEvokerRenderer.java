@@ -17,9 +17,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @OnlyIn(Dist.CLIENT)
 @Mixin(EvokerRenderer.class)
 public class MixinEvokerRenderer<T extends SpellcasterIllager> {
-    private static final ResourceLocation EVOKER_ILLAGER = new ResourceLocation(MaidIllager.MODID + ":textures/entity/maid_evoker.png");
+    private static final ResourceLocation EVOKER_ILLAGER = ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/maid_evoker.png");
 
-    @Inject(method = "getTextureLocation", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/monster/SpellcasterIllager;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
     public void onGetTextureLocation(T entity, CallbackInfoReturnable<ResourceLocation> cir){
         cir.setReturnValue((ResourceLocation) EVOKER_ILLAGER);
     }

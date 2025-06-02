@@ -17,9 +17,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @OnlyIn(Dist.CLIENT)
 @Mixin(VindicatorRenderer.class)
 public class MixinVindicatorRenderer {
-    private static final ResourceLocation VINDICATOR = new ResourceLocation(MaidIllager.MODID + ":textures/entity/maid_vindicator.png");
+    private static final ResourceLocation VINDICATOR = ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/maid_vindicator.png");
 
-    @Inject(method = "getTextureLocation", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/monster/Vindicator;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
     public void onGetTextureLocation(Vindicator entity, CallbackInfoReturnable<ResourceLocation> cir){
         cir.setReturnValue((ResourceLocation) VINDICATOR);
     }

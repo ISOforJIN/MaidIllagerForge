@@ -17,26 +17,26 @@ import net.yokohama_miyazawa.maidillager.MaidIllager;
 @OnlyIn(Dist.CLIENT)
 public class IllagerFaceLayer<T extends AbstractIllager, M extends EntityModel<T>> extends RenderLayer<T, M> {
     private final ResourceLocation[] resourceLocationsForEvokerAndVindicator = {
-            new ResourceLocation(MaidIllager.MODID + ":textures/entity/face/00.png"),
-            new ResourceLocation(MaidIllager.MODID + ":textures/entity/face/01.png"),
-            new ResourceLocation(MaidIllager.MODID + ":textures/entity/face/02.png"),
-            new ResourceLocation(MaidIllager.MODID + ":textures/entity/face/03.png"),
-            new ResourceLocation(MaidIllager.MODID + ":textures/entity/face/04.png"),
-            new ResourceLocation(MaidIllager.MODID + ":textures/entity/face/05.png"),
-            new ResourceLocation(MaidIllager.MODID + ":textures/entity/face/06.png"),
-            new ResourceLocation(MaidIllager.MODID + ":textures/entity/face/07.png"),
-            new ResourceLocation(MaidIllager.MODID + ":textures/entity/face/08.png")
+            ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/face/00.png"),
+            ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/face/01.png"),
+            ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/face/02.png"),
+            ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/face/03.png"),
+            ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/face/04.png"),
+            ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/face/05.png"),
+            ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/face/06.png"),
+            ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/face/07.png"),
+            ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/face/08.png")
     };
     private final ResourceLocation[] resourceLocationsForPillager = {
-            new ResourceLocation(MaidIllager.MODID + ":textures/entity/face/20.png"),
-            new ResourceLocation(MaidIllager.MODID + ":textures/entity/face/21.png"),
-            new ResourceLocation(MaidIllager.MODID + ":textures/entity/face/22.png"),
-            new ResourceLocation(MaidIllager.MODID + ":textures/entity/face/23.png"),
-            new ResourceLocation(MaidIllager.MODID + ":textures/entity/face/24.png"),
-            new ResourceLocation(MaidIllager.MODID + ":textures/entity/face/25.png"),
-            new ResourceLocation(MaidIllager.MODID + ":textures/entity/face/26.png"),
-            new ResourceLocation(MaidIllager.MODID + ":textures/entity/face/27.png"),
-            new ResourceLocation(MaidIllager.MODID + ":textures/entity/face/28.png")
+            ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/face/20.png"),
+            ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/face/21.png"),
+            ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/face/22.png"),
+            ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/face/23.png"),
+            ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/face/24.png"),
+            ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/face/25.png"),
+            ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/face/26.png"),
+            ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/face/27.png"),
+            ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/face/28.png")
     };
 
     public IllagerFaceLayer(RenderLayerParent<T, M> parent){
