@@ -22,7 +22,7 @@ public class MaidIllagerSounds {
     public static final SoundEvent MAID_VINDICATOR_HURT = createEvent("entity.vindicator.hurt");
 
     private static SoundEvent createEvent(String sound) {
-        ResourceLocation name = new ResourceLocation(MaidIllager.MODID, sound);
+        ResourceLocation name = ResourceLocation.fromNamespaceAndPath(MaidIllager.MODID, sound);
         return SoundEvent.createVariableRangeEvent(name);
     }
 }

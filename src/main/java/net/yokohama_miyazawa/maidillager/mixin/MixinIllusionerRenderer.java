@@ -14,9 +14,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @OnlyIn(Dist.CLIENT)
 @Mixin(IllusionerRenderer.class)
 public class MixinIllusionerRenderer {
-    private static final ResourceLocation ILLUSIONER = new ResourceLocation(MaidIllager.MODID + ":textures/entity/maid_illusioner.png");
+    private static final ResourceLocation ILLUSIONER = ResourceLocation.parse(MaidIllager.MODID + ":textures/entity/maid_illusioner.png");
 
-    @Inject(method = "getTextureLocation", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/monster/Illusioner;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
     public void onGetTextureLocation(Illusioner entity, CallbackInfoReturnable<ResourceLocation> cir){
         cir.setReturnValue((ResourceLocation) ILLUSIONER);
     }
