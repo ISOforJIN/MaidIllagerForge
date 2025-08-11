@@ -48,10 +48,10 @@ public class IllagerFaceLayer<T extends AbstractIllager, M extends EntityModel<T
         M parentModel = this.getParentModel();
         if (entity instanceof Evoker || entity instanceof Vindicator) {
             ResourceLocation resourceLocation = resourceLocationsForEvokerAndVindicator[entity.getId() % resourceLocationsForEvokerAndVindicator.length];
-            renderColoredCutoutModel(parentModel, resourceLocation, poseStack, source, light, entity, -3);
+            renderColoredCutoutModel(parentModel, resourceLocation, poseStack, source, light, entity, -1);
         } else if (entity instanceof Pillager) {
             ResourceLocation resourceLocation = resourceLocationsForPillager[entity.getId() % resourceLocationsForPillager.length];
-            renderColoredCutoutModel(parentModel, resourceLocation, poseStack, source, light, entity, -3);
+            renderColoredCutoutModel(parentModel, resourceLocation, poseStack, source, light, entity, -1);
         }
     }
 }
