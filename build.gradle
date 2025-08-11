@@ -144,7 +144,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
     // Apply Mixin AP
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    annotationProcessor 'org.spongepowered:mixin:0.8.7:processor'
 }
 
 mixin {
@@ -182,7 +182,8 @@ tasks.named('jar', Jar).configure {
                 'Specification-Version'   : '1', // We are version 1 of ourselves
                 'Implementation-Title'    : project.name,
                 'Implementation-Version'  : project.jar.archiveVersion,
-                'Implementation-Vendor'   : mod_authors
+                'Implementation-Vendor'   : mod_authors,
+                "MixinConfigs"            : "maidillager.mixins.json"
         ])
     }
 

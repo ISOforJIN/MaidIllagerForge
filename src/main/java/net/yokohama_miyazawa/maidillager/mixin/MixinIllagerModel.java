@@ -41,7 +41,9 @@ public class MixinIllagerModel {
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void init(ModelPart root, CallbackInfo cir) {
-        ModelPart head = ((IllagerModel)(Object)this).getHead();
+        IllagerModel self = (IllagerModel) (Object) this;
+
+        ModelPart head = self.getHead();
         this.chignonB = head.getChild("chignonB");
         this.tail = head.getChild("tail");
         this.hair = head.getChild("hair");
@@ -64,10 +66,10 @@ public class MixinIllagerModel {
         this.hurtEyeL.visible = false;
         this.mouth.visible = false;
 
-        ModelPart hat = ((IllagerModel)(Object)this).getHat();
+        ModelPart hat = self.getHat();
         hat.visible = false;
 
-        ModelPart arms = ((IllagerModelAccessor) (Object)this).getArms();
+        ModelPart arms = ((IllagerModelAccessor) this).getArms();
         arms.visible = false;
     }
 
@@ -106,9 +108,11 @@ public class MixinIllagerModel {
 
     @Inject(method = "setupAnim", at = @At("HEAD"), cancellable = true)
     private <T extends AbstractIllager> void onSetupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo cir) {
+        IllagerModel self = (IllagerModel) (Object) this;
+
         if (entity instanceof Illusioner) {
             this.Skirt.visible = false;
-            ModelPart hat = ((IllagerModel)(Object)this).getHat();
+            ModelPart hat = self.getHat();
             hat.visible = false;
         }
         if (entity instanceof Pillager || entity instanceof Illusioner) {
@@ -124,12 +128,12 @@ public class MixinIllagerModel {
         head.yRot = netHeadYaw * ((float)Math.PI / 180F);
         head.xRot = headPitch * ((float)Math.PI / 180F);
 
-        ModelPart rightArm = ((IllagerModelAccessor) (Object)this).getRightArm();
-        ModelPart leftArm  = ((IllagerModelAccessor) (Object)this).getLeftArm();
-        ModelPart rightLeg = ((IllagerModelAccessor) (Object)this).getRightLeg();
-        ModelPart leftLeg  = ((IllagerModelAccessor) (Object)this).getLeftLeg();
+        ModelPart rightArm = ((IllagerModelAccessor) this).getRightArm();
+        ModelPart leftArm  = ((IllagerModelAccessor) this).getLeftArm();
+        ModelPart rightLeg = ((IllagerModelAccessor) this).getRightLeg();
+        ModelPart leftLeg  = ((IllagerModelAccessor) this).getLeftLeg();
 
-        if (((IllagerModel)(Object)this).riding) {  // ラヴェジャーに乗っている時 // when riding a ravager (translated by rensatopc)
+        if (self.riding) {  // ラヴェジャーに乗っている時 // when riding a ravager (translated by rensatopc)
             root.y = -ridingOffset;
             this.setAngle(rightArm, -0.6283185F, 0.0F, 0.0F);
             this.setAngle(leftArm, -0.6283185F, 0.0F, 0.0F);
@@ -235,14 +239,16 @@ public class MixinIllagerModel {
     // control arm position and weapon position (translated by rensatopc)
     @Inject(method = "translateToHand", at = @At("HEAD"), cancellable = true)
     private void onTranslateToHand(HumanoidArm arm, PoseStack poseStack, CallbackInfo cir) {
+        IllagerModel self = (IllagerModel) (Object) this;
+
         ModelPart attackingArm = (arm == HumanoidArm.LEFT)
-                ? ((IllagerModelAccessor) (Object)this).getLeftArm()
-                : ((IllagerModelAccessor) (Object)this).getRightArm();
+                ? ((IllagerModelAccessor) this).getLeftArm()
+                : ((IllagerModelAccessor) this).getRightArm();
 
         // 武器と腕の位置関係を微調整
         poseStack.translate(
                 ((arm == HumanoidArm.LEFT) ? 3.0F : -3.0F) / 16.0F,
-                ((((IllagerModel)(Object)this).riding) ? 7.5F - ridingOffset : 7.5F) / 16.0F,
+                (self.riding ? 7.5F - ridingOffset : 7.5F) / 16.0F,
                 0.75F / 16.0F);
         // 中心点を設定しつつ、腕と武器の角度を同期
         poseStack.rotateAround(

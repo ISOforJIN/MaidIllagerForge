@@ -21,11 +21,12 @@ public class MixinVindicatorRenderer {
 
     @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/monster/Vindicator;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
     public void onGetTextureLocation(Vindicator entity, CallbackInfoReturnable<ResourceLocation> cir){
-        cir.setReturnValue((ResourceLocation) VINDICATOR);
+        cir.setReturnValue(VINDICATOR);
     }
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void init(EntityRendererProvider.Context context, CallbackInfo cir) {
-        ((VindicatorRenderer)(Object)this).addLayer(new IllagerFaceLayer<>(((VindicatorRenderer)(Object)this)));
+        VindicatorRenderer self = (VindicatorRenderer) (Object) this;
+        self.addLayer(new IllagerFaceLayer<>(self));
     }
 }

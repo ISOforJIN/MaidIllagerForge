@@ -18,6 +18,6 @@ public class MixinIllusionerRenderer {
 
     @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/monster/Illusioner;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
     public void onGetTextureLocation(Illusioner entity, CallbackInfoReturnable<ResourceLocation> cir){
-        cir.setReturnValue((ResourceLocation) ILLUSIONER);
+        cir.setReturnValue(ILLUSIONER);
     }
 }
