@@ -21,11 +21,12 @@ public class MixinEvokerRenderer<T extends SpellcasterIllager> {
 
     @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/monster/SpellcasterIllager;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
     public void onGetTextureLocation(T entity, CallbackInfoReturnable<ResourceLocation> cir){
-        cir.setReturnValue((ResourceLocation) EVOKER_ILLAGER);
+        cir.setReturnValue(EVOKER_ILLAGER);
     }
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void init(EntityRendererProvider.Context context, CallbackInfo cir) {
-        ((EvokerRenderer)(Object)this).addLayer(new IllagerFaceLayer<>(((EvokerRenderer)(Object)this)));
+        EvokerRenderer self = (EvokerRenderer) (Object) this;
+        self.addLayer(new IllagerFaceLayer<>(self));
     }
 }

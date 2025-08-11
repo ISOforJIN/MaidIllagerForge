@@ -21,11 +21,12 @@ public class MixinPillagerRenderer {
 
     @Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/monster/Pillager;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
     public void onGetTextureLocation(Pillager entity, CallbackInfoReturnable<ResourceLocation> cir){
-        cir.setReturnValue((ResourceLocation) PILLAGER);
+        cir.setReturnValue(PILLAGER);
     }
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void init(EntityRendererProvider.Context context, CallbackInfo cir) {
-        ((PillagerRenderer)(Object)this).addLayer(new IllagerFaceLayer<>(((PillagerRenderer)(Object)this)));
+        PillagerRenderer self = (PillagerRenderer) (Object) this;
+        self.addLayer(new IllagerFaceLayer<>(self));
     }
 }

@@ -9,5 +9,8 @@
     "MixinIllusionerRenderer",
     "MixinIllagerModel",
     "IllagerModelAccessor"
-  ]
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
 }

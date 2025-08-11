@@ -8,11 +8,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.PlayLevelSoundEvent;
-//import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-//import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-//import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.yokohama_miyazawa.maidillager.init.MaidIllagerSounds;
 import org.slf4j.Logger;
 
@@ -21,33 +18,13 @@ import java.util.regex.Pattern;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(MaidIllager.MODID)
-public class MaidIllager
-{
+public class MaidIllager {
     public static final String MODID = "maidillager";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
-    public MaidIllager()
-    {
-        // This code is not using, so It is commented out.
-//        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-//        modEventBus.addListener(this::commonSetup);
-
+    public MaidIllager() {
         MinecraftForge.EVENT_BUS.register(this);
     }
-
-    // This code is not using, so It is commented out.
-//    private void commonSetup(final FMLCommonSetupEvent event)
-//    {
-//
-//    }
-
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    // This code is not using, so It is commented out.
-//    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-//    public static class ClientModEvents
-//    {
-//
-//    }
 
     // 邪悪な村人の声を変える
     @OnlyIn(Dist.CLIENT)
@@ -92,7 +69,7 @@ public class MaidIllager
             case "vindicator.celebrate" -> { return MaidIllagerSounds.MAID_VINDICATOR_CELEBRATE; }
             case "vindicator.death"     -> { return MaidIllagerSounds.MAID_VINDICATOR_DEATH; }
             case "vindicator.hurt"      -> { return MaidIllagerSounds.MAID_VINDICATOR_HURT; }
-            default -> { throw new IllegalArgumentException(); }
+            default -> throw new IllegalArgumentException();
         }
     }
 }
